@@ -16,8 +16,8 @@ import operator
 
 class AgentState(TypedDict):
     # ── Run identity ──────────────────────────────────────────────────────
-    run_id: str          # UUID string, created by FastAPI before graph starts
-    user_id: int         # Django user ID — for DB writes and user isolation
+    run_id: str          # UUID string, created by Django before calling FastAPI
+    user_id: str         # Django user UUID — for DB writes and user isolation
 
     # ── Raw inputs from the user ──────────────────────────────────────────
     jd_raw: str                  # full job description text
