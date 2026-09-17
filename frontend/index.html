@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobUndo — AI-Powered Job Application Agent</title>
+  <meta name="description" content="Upload your resume, paste a job description, and let the AI agent craft a tailored application package in minutes." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────────────── -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="/" class="logo" aria-label="JobUndo home">
+        <div class="logo__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="28" height="28" rx="8" fill="url(#logoGrad)"/>
+            <path d="M8 14L12 18L20 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#a855f7"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo__text">Job<span class="logo__accent">Undo</span></span>
+      </a>
+
+      <nav class="header__nav" aria-label="Main navigation">
+        <a href="#how-it-works" class="nav-link">How it works</a>
+        <a href="#app" class="nav-link">Try it</a>
+      </nav>
+
+      <div class="header__actions">
+        <button id="btn-login" class="btn btn--ghost btn--sm">Log in</button>
+        <button id="btn-signup" class="btn btn--primary btn--sm">Get started</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Hero ────────────────────────────────────────────────────────────── -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__badge" aria-label="AI-powered">
+        <span class="badge__dot" aria-hidden="true"></span>
+        AI Agent · Local LLM · Privacy-first
+      </div>
+
+      <h1 id="hero-heading" class="hero__title">
+        Your resume.<br />
+        <span class="gradient-text">Their language.</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Drop your resume. Paste the job description. Our AI agent reads both,
+        researches the company, and writes a tailored resume, cover letter,
+        and cold emails — in minutes.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#app" class="btn btn--primary btn--lg">
+          Start your application
+          <svg class="btn__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#how-it-works" class="btn btn--ghost btn--lg">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How it works ────────────────────────────────────────────────────── -->
+  <section class="how-it-works" id="how-it-works" aria-labelledby="hiw-heading">
+    <div class="section__inner">
+      <h2 id="hiw-heading" class="section__title">How the agent thinks</h2>
+      <p class="section__subtitle">
+        Every step is deliberate. The AI doesn't guess — it reads, analyses, and writes.
+      </p>
+
+      <div class="pipeline" role="list">
+        <div class="pipeline__step" role="listitem">
+          <div class="pipeline__icon" aria-hidden="true">📄</div>
+          <div class="pipeline__label">Parse JD</div>
+          <div class="pipeline__desc">Extracts role, company, required skills, ATS keywords</div>
+        </div>
+        <div class="pipeline__arrow" aria-hidden="true">↓</div>
+
+        <div class="pipeline__step" role="listitem">
+          <div class="pipeline__icon" aria-hidden="true">📋</div>
+          <div class="pipeline__label">Parse Resume</div>
+          <div class="pipeline__desc">Reads your PDF into structured experience data</div>
+        </div>
+        <div class="pipeline__arrow" aria-hidden="true">↓</div>
+
+        <div class="pipeline__step" role="listitem">
+          <div class="pipeline__icon" aria-hidden="true">🔍</div>
+          <div class="pipeline__label">Skill Analysis</div>
+          <div class="pipeline__desc">Matches your profile to the role requirements</div>
+        </div>
+        <div class="pipeline__arrow" aria-hidden="true">↓</div>
+
+        <div class="pipeline__step" role="listitem">
+          <div class="pipeline__icon" aria-hidden="true">🏢</div>
+          <div class="pipeline__label">Research Company</div>
+          <div class="pipeline__desc">RAG pipeline — grounded in real company data</div>
+        </div>
+        <div class="pipeline__arrow" aria-hidden="true">↓</div>
+
+        <div class="pipeline__step" role="listitem">
+          <div class="pipeline__icon" aria-hidden="true">✍️</div>
+          <div class="pipeline__label">Tailor Resume</div>
+          <div class="pipeline__desc">Rewrites without fabricating a single fact</div>
+        </div>
+        <div class="pipeline__arrow" aria-hidden="true">↓</div>
+
+        <div class="pipeline__step" role="listitem">
+          <div class="pipeline__icon" aria-hidden="true">💌</div>
+          <div class="pipeline__label">Cover Letter + Emails</div>
+          <div class="pipeline__desc">Specific, grounded, company-aware writing</div>
+        </div>
+        <div class="pipeline__arrow" aria-hidden="true">↓</div>
+
+        <div class="pipeline__step pipeline__step--accent" role="listitem">
+          <div class="pipeline__icon" aria-hidden="true">✅</div>
+          <div class="pipeline__label">Quality Check</div>
+          <div class="pipeline__desc">Evaluates and retries if the bar isn't met</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Main App ─────────────────────────────────────────────────────────── -->
+  <section class="app-section" id="app" aria-labelledby="app-heading">
+    <div class="section__inner">
+      <h2 id="app-heading" class="section__title">Generate your application</h2>
+      <p class="section__subtitle">All processing happens locally. Your data never leaves your machine.</p>
+
+      <div class="app-layout">
+
+        <!-- ── Input Panel ──────────────────────────────────────────────── -->
+        <div class="input-panel card" aria-label="Application inputs">
+
+          <!-- Step 1: Resume -->
+          <div class="input-group" id="step-resume">
+            <div class="input-group__header">
+              <span class="step-badge">1</span>
+              <span class="input-group__title">Upload your resume</span>
+            </div>
+
+            <div
+              class="drop-zone"
+              id="drop-zone"
+              role="button"
+              tabindex="0"
+              aria-label="Upload resume PDF — click or drag and drop"
+              aria-describedby="drop-zone-hint"
+            >
+              <div class="drop-zone__icon" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <path d="M20 28V12M20 12L14 18M20 12L26 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8 30h24" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                </svg>
+              </div>
+              <p class="drop-zone__primary">Drop your PDF here</p>
+              <p class="drop-zone__secondary" id="drop-zone-hint">or click to browse · PDF only · max 10 MB</p>
+              <input type="file" id="resume-file-input" accept=".pdf,application/pdf" class="sr-only" aria-label="Resume file input" />
+            </div>
+
+            <div class="file-preview" id="file-preview" hidden aria-live="polite">
+              <div class="file-preview__icon" aria-hidden="true">📄</div>
+              <div class="file-preview__info">
+                <p class="file-preview__name" id="file-name"></p>
+                <p class="file-preview__size" id="file-size"></p>
+              </div>
+              <button class="file-preview__remove" id="btn-remove-file" aria-label="Remove resume file">✕</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Job Description -->
+          <div class="input-group" id="step-jd">
+            <div class="input-group__header">
+              <span class="step-badge">2</span>
+              <span class="input-group__title">Paste job description</span>
+            </div>
+            <textarea
+              id="jd-input"
+              class="textarea"
+              rows="8"
+              placeholder="Paste the full job description here…&#10;&#10;Include everything — the more detail the agent has, the better it can tailor your application."
+              aria-label="Job description text"
+              maxlength="20000"
+            ></textarea>
+            <div class="char-counter" aria-live="polite">
+              <span id="char-count">0</span> / 20,000 characters
+            </div>
+          </div>
+
+          <!-- Step 3: Settings -->
+          <div class="input-group" id="step-settings">
+            <div class="input-group__header">
+              <span class="step-badge">3</span>
+              <span class="input-group__title">Preferences <span class="optional-badge">optional</span></span>
+            </div>
+
+            <div class="settings-grid">
+              <div class="field">
+                <label class="field__label" for="job-url">Job posting URL</label>
+                <input
+                  type="url"
+                  id="job-url"
+                  class="input"
+                  placeholder="https://careers.company.com/..."
+                  aria-describedby="job-url-hint"
+                />
+                <p class="field__hint" id="job-url-hint">Used to research the company in depth</p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="tone-select">Writing tone</label>
+                <select id="tone-select" class="select" aria-label="Select writing tone">
+                  <option value="professional">Professional</option>
+                  <option value="conversational">Conversational</option>
+                  <option value="enthusiastic">Enthusiastic</option>
+                  <option value="concise">Concise</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Generate Button -->
+          <button
+            id="btn-generate"
+            class="btn btn--primary btn--full btn--lg"
+            aria-label="Generate job application"
+            disabled
+          >
+            <span class="btn__text">Generate Application</span>
+            <span class="btn__spinner" aria-hidden="true" hidden></span>
+          </button>
+
+          <p class="privacy-note" aria-label="Privacy information">
+            🔒 Your data is processed entirely on your local machine via Ollama.
+            Nothing is sent to external servers.
+          </p>
+        </div>
+
+        <!-- ── Progress + Results Panel ──────────────────────────────────── -->
+        <div class="output-panel">
+
+          <!-- Progress Card -->
+          <div class="card progress-card" id="progress-card" aria-label="Agent progress">
+            <div class="progress-card__header">
+              <h3 class="progress-card__title">Agent Progress</h3>
+              <div class="progress-card__status" id="progress-status" aria-live="polite">Waiting…</div>
+            </div>
+
+            <ol class="steps-list" aria-label="Processing steps" aria-live="polite">
+              <li class="step-item step-item--waiting" id="step-parse-jd" data-step="parse_jd">
+                <div class="step-item__indicator" aria-hidden="true">
+                  <span class="step-item__icon">○</span>
+                </div>
+                <div class="step-item__content">
+                  <span class="step-item__label">Reading job description</span>
+                  <span class="step-item__meta"></span>
+                </div>
+              </li>
+              <li class="step-item step-item--waiting" id="step-parse-resume" data-step="parse_resume">
+                <div class="step-item__indicator" aria-hidden="true">
+                  <span class="step-item__icon">○</span>
+                </div>
+                <div class="step-item__content">
+                  <span class="step-item__label">Analysing your resume</span>
+                  <span class="step-item__meta"></span>
+                </div>
+              </li>
+              <li class="step-item step-item--waiting" id="step-skill-gap" data-step="skill_gap_analysis">
+                <div class="step-item__indicator" aria-hidden="true">
+                  <span class="step-item__icon">○</span>
+                </div>
+                <div class="step-item__content">
+                  <span class="step-item__label">Matching your experience</span>
+                  <span class="step-item__meta"></span>
+                </div>
+              </li>
+              <li class="step-item step-item--waiting" id="step-company" data-step="company_research">
+                <div class="step-item__indicator" aria-hidden="true">
+                  <span class="step-item__icon">○</span>
+                </div>
+                <div class="step-item__content">
+                  <span class="step-item__label">Researching company</span>
+                  <span class="step-item__meta"></span>
+                </div>
+              </li>
+              <li class="step-item step-item--waiting" id="step-resume-rewriter" data-step="resume_rewriter">
+                <div class="step-item__indicator" aria-hidden="true">
+                  <span class="step-item__icon">○</span>
+                </div>
+                <div class="step-item__content">
+                  <span class="step-item__label">Tailoring resume</span>
+                  <span class="step-item__meta"></span>
+                </div>
+              </li>
+              <li class="step-item step-item--waiting" id="step-cover-letter" data-step="cover_letter_generator">
+                <div class="step-item__indicator" aria-hidden="true">
+                  <span class="step-item__icon">○</span>
+                </div>
+                <div class="step-item__content">
+                  <span class="step-item__label">Writing cover letter</span>
+                  <span class="step-item__meta"></span>
+                </div>
+              </li>
+              <li class="step-item step-item--waiting" id="step-emails" data-step="cold_email_drafter">
+                <div class="step-item__indicator" aria-hidden="true">
+                  <span class="step-item__icon">○</span>
+                </div>
+                <div class="step-item__content">
+                  <span class="step-item__label">Drafting outreach emails</span>
+                  <span class="step-item__meta"></span>
+                </div>
+              </li>
+              <li class="step-item step-item--waiting" id="step-quality" data-step="quality_checker">
+                <div class="step-item__indicator" aria-hidden="true">
+                  <span class="step-item__icon">○</span>
+                </div>
+                <div class="step-item__content">
+                  <span class="step-item__label">Checking quality</span>
+                  <span class="step-item__meta"></span>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Results Card (hidden until complete) -->
+          <div class="card results-card" id="results-card" hidden aria-label="Application results" aria-live="polite">
+            <div class="results-card__header">
+              <div class="results-success-icon" aria-hidden="true">✅</div>
+              <h3 class="results-card__title">Application Ready</h3>
+              <p class="results-card__subtitle">Your tailored application package is ready to download.</p>
+            </div>
+
+            <div class="results-downloads">
+              <a href="#" id="dl-resume" class="download-item" aria-label="Download tailored resume PDF">
+                <div class="download-item__icon" aria-hidden="true">📄</div>
+                <div class="download-item__info">
+                  <span class="download-item__name">Tailored Resume</span>
+                  <span class="download-item__type">PDF</span>
+                </div>
+                <span class="download-item__arrow" aria-hidden="true">↓</span>
+              </a>
+
+              <a href="#" id="dl-cover-letter" class="download-item" aria-label="Download cover letter PDF">
+                <div class="download-item__icon" aria-hidden="true">💌</div>
+                <div class="download-item__info">
+                  <span class="download-item__name">Cover Letter</span>
+                  <span class="download-item__type">PDF</span>
+                </div>
+                <span class="download-item__arrow" aria-hidden="true">↓</span>
+              </a>
+
+              <a href="#" id="dl-emails" class="download-item" aria-label="View cold email variants">
+                <div class="download-item__icon" aria-hidden="true">✉️</div>
+                <div class="download-item__info">
+                  <span class="download-item__name">Outreach Emails</span>
+                  <span class="download-item__type">3 variants</span>
+                </div>
+                <span class="download-item__arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+
+            <button id="btn-new-application" class="btn btn--ghost btn--full">
+              Start a new application
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="logo" aria-label="JobUndo">
+        <div class="logo__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="8" fill="url(#logoGrad2)"/>
+            <path d="M8 14L12 18L20 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logoGrad2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#a855f7"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo__text">Job<span class="logo__accent">Undo</span></span>
+      </div>
+      <p class="footer__copy">Built with LangGraph · Ollama · Django · FastAPI</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
