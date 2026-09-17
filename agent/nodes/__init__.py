@@ -18,23 +18,15 @@ from nodes.parse_resume import parse_resume
 # ── Phase 4: Real implementation ──────────────────────────────────────────────
 from nodes.skill_gap import skill_gap_analysis
 
+# ── Phase 5: Real implementation ──────────────────────────────────────────────
+from nodes.company_research import company_research
+
 logger = logging.getLogger(__name__)
 
 
 def _stub(state: AgentState, node: str) -> None:
     logger.info(f"[run={state['run_id']}] node={node} — stub (not yet implemented)")
 
-
-
-# ── Phase 5 stub ──────────────────────────────────────────────────────────────
-def company_research(state: AgentState) -> dict:
-    """Phase 5: RAG pipeline — company intelligence gathering."""
-    _stub(state, "company_research")
-    return {
-        "current_step": "company_research",
-        "steps_completed": ["company_research"],
-        "company_intelligence": None,
-    }
 
 
 # ── Phase 6 stub ──────────────────────────────────────────────────────────────

@@ -170,3 +170,49 @@ class SkillGapAnalysis(BaseModel):
         description="strong_candidate | viable_candidate | significant_gaps"
     )
 
+
+# ── Company Intelligence Schema ───────────────────────────────────────────────
+
+class CompanyIntelligence(BaseModel):
+    """
+    Company intelligence gathered by the RAG pipeline.
+    Populated by: company_research node (Phase 5).
+
+    Used by:
+    - cover_letter_generator → personalise the opening, reference values
+    - cold_email_drafter → tailor outreach to what matters to this company
+    """
+    company_name: str = Field(default="")
+    mission: Optional[str] = Field(
+        default=None, description="Company mission statement or purpose"
+    )
+    culture_values: List[str] = Field(
+        default_factory=list,
+        description="Stated or inferred company values and culture signals"
+    )
+    recent_highlights: List[str] = Field(
+        default_factory=list,
+        description="Recent news, product launches, or notable achievements"
+    )
+    technologies_mentioned: List[str] = Field(
+        default_factory=list,
+        description="Technologies referenced in company/job materials"
+    )
+    talking_points: List[str] = Field(
+        default_factory=list,
+        description="Compelling angles to use in cover letter and emails"
+    )
+    red_flags: List[str] = Field(
+        default_factory=list,
+        description="Concerns or warning signs (optional — don't force)"
+    )
+    source: str = Field(
+        default="jd_only",
+        description="web_scraped | jd_only | combined"
+    )
+    confidence: str = Field(
+        default="low",
+        description="high | medium | low — reflects data quality"
+    )
+
+

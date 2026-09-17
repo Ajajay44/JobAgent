@@ -10,9 +10,14 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # ── Database ──────────────────────────────────────────────────────────
-    # asyncpg requires the postgresql+asyncpg:// scheme
+    # asyncpg requires the postgresql+asyncpg:// scheme (health checks)
     async_database_url: str = (
         "postgresql+asyncpg://jobundo:changeme@localhost:5432/jobundo"
+    )
+    # psycopg2 sync URL — used by langchain-postgres PGVector (Phase 5)
+    # Maps DATABASE_URL env var (postgres://... → postgresql+psycopg2://...)
+    sync_database_url: str = (
+        "postgresql+psycopg2://jobundo:changeme@localhost:5432/jobundo"
     )
 
     # ── Internal auth ────────────────────────────────────────────────────
