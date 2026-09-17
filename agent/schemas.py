@@ -345,5 +345,19 @@ class LinkedInReferralOutput(BaseModel):
     )
 
 
+# ── Phase 8 Output Schemas ────────────────────────────────────────────────────
+
+class QualityCheckOutput(BaseModel):
+    """
+    Quality check of the generated application package.
+    Populated by: quality_checker (Phase 8).
+    """
+    score: int = Field(description="Quality score 0-100")
+    feedback: str = Field(description="Overall feedback on the application")
+    weaknesses: List[str] = Field(default_factory=list, description="List of specific weaknesses or areas for improvement")
+    suggested_target_node: str = Field(default="", description="If retry is needed, which node should be re-run (e.g. resume_rewriter)")
+
+
+
 
 

@@ -36,21 +36,11 @@ def _stub(state: AgentState, node: str) -> None:
     logger.info(f"[run={state['run_id']}] node={node} — stub (not yet implemented)")
 
 
-# ── Phase 8 stub ──────────────────────────────────────────────────────────────
-def quality_checker(state: AgentState) -> dict:
-    """Phase 8: Score output quality (0-100). Always passes until Phase 8."""
-    _stub(state, "quality_checker")
-    return {
-        "current_step": "quality_checker",
-        "steps_completed": ["quality_checker"],
-        "quality_score": 100,
-        "quality_feedback": {},
-        "retry_count": state.get("retry_count", 0),
-        "retry_target_node": None,
-    }
-
+# ── Phase 8: Real implementation ──────────────────────────────────────────────
+from nodes.quality_check import quality_checker
 
 # ── Phase 9 stub ──────────────────────────────────────────────────────────────
+
 def package_store(state: AgentState) -> dict:
     """Phase 9: Generate PDFs and persist results to database."""
     _stub(state, "package_store")
