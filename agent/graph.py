@@ -1,8 +1,5 @@
 """
-LangGraph agent workflow — Phase 1 skeleton.
-
-The graph topology is fully defined here. All nodes are currently stubs.
-As each Phase completes, only the node function changes — the graph wiring stays the same.
+LangGraph agent workflow — Phase 7.
 
 Topology:
     parse_jd
@@ -18,6 +15,8 @@ Topology:
     cover_letter_generator
         ↓
     cold_email_drafter
+        ↓
+    linkedin_referral_drafter       ← Phase 7 (new)
         ↓
     quality_checker
         ↓ (conditional)
@@ -41,6 +40,7 @@ from nodes import (
     resume_rewriter,
     cover_letter_generator,
     cold_email_drafter,
+    linkedin_referral_drafter,
     quality_checker,
     package_store,
 )
@@ -92,6 +92,7 @@ def build_graph() -> StateGraph:
     workflow.add_node("resume_rewriter", resume_rewriter)
     workflow.add_node("cover_letter_generator", cover_letter_generator)
     workflow.add_node("cold_email_drafter", cold_email_drafter)
+    workflow.add_node("linkedin_referral_drafter", linkedin_referral_drafter)
     workflow.add_node("quality_checker", quality_checker)
     workflow.add_node("package_store", package_store)
 
@@ -105,7 +106,8 @@ def build_graph() -> StateGraph:
     workflow.add_edge("company_research", "resume_rewriter")
     workflow.add_edge("resume_rewriter", "cover_letter_generator")
     workflow.add_edge("cover_letter_generator", "cold_email_drafter")
-    workflow.add_edge("cold_email_drafter", "quality_checker")
+    workflow.add_edge("cold_email_drafter", "linkedin_referral_drafter")
+    workflow.add_edge("linkedin_referral_drafter", "quality_checker")
 
     # ── Conditional retry edge ────────────────────────────────────────────
     # The keys of the mapping are all possible return values of should_retry().
@@ -118,6 +120,7 @@ def build_graph() -> StateGraph:
             "resume_rewriter": "resume_rewriter",
             "cover_letter_generator": "cover_letter_generator",
             "cold_email_drafter": "cold_email_drafter",
+            "linkedin_referral_drafter": "linkedin_referral_drafter",
         },
     )
 

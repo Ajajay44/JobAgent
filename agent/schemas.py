@@ -273,4 +273,77 @@ class RewrittenResume(BaseModel):
     )
 
 
+# ── Phase 7 Output Schemas ────────────────────────────────────────────────────
+
+class CoverLetterOutput(BaseModel):
+    """
+    Structured cover letter.
+    Populated by: cover_letter_generator (Phase 7).
+    """
+    subject_line: str = Field(description="Email subject when submitting via email")
+    greeting: str = Field(default="Dear Hiring Manager,")
+    opening_paragraph: str = Field(description="Hook: why this company and role")
+    body_paragraphs: List[str] = Field(
+        default_factory=list,
+        description="2-3 body paragraphs covering technical fit + achievement"
+    )
+    closing_paragraph: str = Field(description="Cultural fit + call to action")
+    signoff: str = Field(default="Sincerely,")
+    full_text: str = Field(description="Complete formatted letter as a single string")
+    word_count: int = Field(default=0)
+
+
+class EmailVariant(BaseModel):
+    """One cold email variant."""
+    variant_type: str = Field(
+        description="formal | casual | referral_style"
+    )
+    subject: str
+    body: str
+    tone_notes: str = Field(
+        default="",
+        description="Why this variant uses this tone and when to send it"
+    )
+
+
+class ColdEmailOutput(BaseModel):
+    """
+    3 cold email variants for different outreach contexts.
+    Populated by: cold_email_drafter (Phase 7).
+    """
+    variants: List[EmailVariant] = Field(default_factory=list)
+
+
+class LinkedInReferralOutput(BaseModel):
+    """
+    LinkedIn referral request messages.
+    Populated by: linkedin_referral_drafter (Phase 7).
+
+    Two-message strategy:
+    1. connection_note — sent with the connection request (≤300 chars, LinkedIn limit)
+       - Brief, genuine, no ask yet — just reason for connecting
+    2. follow_up_message — sent after they accept the connection
+       - Warmer, more direct about the role and the referral request
+       - Respectful of their time, provides context, has a clear call to action
+
+    personalization_tips — guide the user on WHOM to message and how to
+    customize the messages further (LLM can't know their specific LinkedIn network)
+    """
+    connection_note: str = Field(
+        description="≤300 characters — sent with the LinkedIn connection request"
+    )
+    follow_up_message: str = Field(
+        description="Follow-up after they accept — can be longer and more direct"
+    )
+    personalization_tips: List[str] = Field(
+        default_factory=list,
+        description="Tips for finding the right person and personalising further"
+    )
+    who_to_target: str = Field(
+        default="",
+        description="Suggested roles/titles to look for on LinkedIn at this company"
+    )
+
+
+
 

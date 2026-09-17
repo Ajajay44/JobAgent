@@ -44,10 +44,13 @@ class AgentState(TypedDict):
     resume_rewritten: Optional[dict]
 
     # Populated by: cover_letter_generator (Phase 7)
-    cover_letter_content: Optional[str]
+    cover_letter_content: Optional[dict]  # structured cover letter
 
     # Populated by: cold_email_drafter (Phase 7)
-    cold_email_variants: Optional[list]  # list of 3 email dicts
+    cold_email_variants: Optional[list]   # list of 3 EmailVariant dicts
+
+    # Populated by: linkedin_referral_drafter (Phase 7)
+    linkedin_referral: Optional[dict]     # connection_note + follow_up_message
 
     # ── Quality loop ──────────────────────────────────────────────────────
     # Populated by: quality_checker (Phase 8)
