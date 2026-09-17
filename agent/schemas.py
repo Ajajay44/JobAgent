@@ -99,3 +99,74 @@ class ParsedResume(BaseModel):
     achievements: List[str] = Field(default_factory=list)
     languages: List[str] = Field(default_factory=list)
     total_years_experience: Optional[float] = None
+
+
+# ── Skill Gap Analysis Schema ─────────────────────────────────────────────────
+
+class SkillClassification(BaseModel):
+    """
+    Classification of a single JD skill against the candidate's profile.
+
+    Used inside SkillGapAnalysis for both required and preferred skills.
+    HIDDEN_STRENGTH skills don't belong here — they live in hidden_strengths.
+    """
+    skill: str = Field(description="The skill name from the JD")
+    classification: str = Field(
+        description="STRONG_MATCH | PARTIAL_MATCH | GAP"
+    )
+    evidence: Optional[str] = Field(
+        default=None,
+        description="One sentence citing evidence from the resume, or null if GAP"
+    )
+
+
+class SkillGapAnalysis(BaseModel):
+    """
+    Full skill gap analysis result.
+    Populated by: skill_gap_analysis node (Phase 4).
+
+    This is the bridge between Phase 2 (parsing) and Phase 6–7 (writing).
+    The resume rewriter and cover letter generator read this to know:
+    - What to lead with (STRONG_MATCH → talking points)
+    - What to frame carefully (PARTIAL_MATCH → bridging language)
+    - What to omit or address honestly (GAP → gaps_to_address)
+    - What to proactively add (hidden_strengths)
+    """
+    # Per-skill classifications
+    required_skills: List[SkillClassification] = Field(
+        default_factory=list,
+        description="Classification of each required JD skill"
+    )
+    preferred_skills: List[SkillClassification] = Field(
+        default_factory=list,
+        description="Classification of each preferred JD skill"
+    )
+    hidden_strengths: List[str] = Field(
+        default_factory=list,
+        description="Resume skills NOT in the JD but valuable for this role"
+    )
+
+    # Quantitative
+    overall_match_score: int = Field(
+        default=0,
+        description="0-100 integer. 80+=strong, 60-79=viable, <60=significant gaps"
+    )
+
+    # Qualitative
+    experience_level_match: str = Field(
+        default="unknown",
+        description="above_target | matches | below_target"
+    )
+    key_talking_points: List[str] = Field(
+        default_factory=list,
+        description="What to emphasise in the resume and cover letter"
+    )
+    gaps_to_address: List[str] = Field(
+        default_factory=list,
+        description="Important skill gaps that need strategic handling"
+    )
+    recommendation: str = Field(
+        default="unknown",
+        description="strong_candidate | viable_candidate | significant_gaps"
+    )
+

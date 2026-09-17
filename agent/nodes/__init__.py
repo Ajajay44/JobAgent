@@ -15,25 +15,15 @@ from state import AgentState
 from nodes.parse_jd import parse_jd
 from nodes.parse_resume import parse_resume
 
+# ── Phase 4: Real implementation ──────────────────────────────────────────────
+from nodes.skill_gap import skill_gap_analysis
+
 logger = logging.getLogger(__name__)
 
 
 def _stub(state: AgentState, node: str) -> None:
     logger.info(f"[run={state['run_id']}] node={node} — stub (not yet implemented)")
 
-
-# ── Phase 4 stub ──────────────────────────────────────────────────────────────
-def skill_gap_analysis(state: AgentState) -> dict:
-    """
-    Phase 4: Compare JD requirements against resume.
-    Classifications: STRONG_MATCH | PARTIAL_MATCH | GAP | HIDDEN_STRENGTH
-    """
-    _stub(state, "skill_gap_analysis")
-    return {
-        "current_step": "skill_gap_analysis",
-        "steps_completed": ["skill_gap_analysis"],
-        "skill_alignment": None,
-    }
 
 
 # ── Phase 5 stub ──────────────────────────────────────────────────────────────
