@@ -97,10 +97,13 @@ def _handle_agent_success(application: Application, agent_run: AgentRun, result:
         "jd_parsed": result.get("jd_parsed"),
         "resume_parsed": result.get("resume_parsed"),
         "skill_alignment": result.get("skill_alignment"),
+        "company_intelligence": result.get("company_intelligence"),
         "resume_rewritten": result.get("resume_rewritten"),
         "cover_letter_content": result.get("cover_letter_content"),
         "cold_email_variants": result.get("cold_email_variants"),
+        "linkedin_referral": result.get("linkedin_referral"),
     }
+
 
     # Build observability log entry
     node_log_entry = {

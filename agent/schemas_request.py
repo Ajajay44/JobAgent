@@ -45,11 +45,14 @@ class AgentRunResponse(BaseModel):
     jd_parsed: Optional[dict] = None
     resume_parsed: Optional[dict] = None
 
-    # Phase 4–9 outputs (None until those phases are built)
+    # Phase 4–9 outputs
     skill_alignment: Optional[dict] = None
+    company_intelligence: Optional[dict] = None
     resume_rewritten: Optional[dict] = None
-    cover_letter_content: Optional[str] = None
+    cover_letter_content: Optional[dict] = None
     cold_email_variants: Optional[list] = None
+    linkedin_referral: Optional[dict] = None
+
 
     # Observability
     steps_completed: List[str] = Field(default_factory=list)
