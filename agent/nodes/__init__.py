@@ -39,15 +39,6 @@ def _stub(state: AgentState, node: str) -> None:
 # ── Phase 8: Real implementation ──────────────────────────────────────────────
 from nodes.quality_check import quality_checker
 
-# ── Phase 9 stub ──────────────────────────────────────────────────────────────
-
-def package_store(state: AgentState) -> dict:
-    """Phase 9: Generate PDFs and persist results to database."""
-    _stub(state, "package_store")
-    return {
-        "current_step": "package_store",
-        "steps_completed": ["package_store"],
-        "resume_pdf": None,
-        "cover_letter_pdf": None,
-    }
+# ── Phase 9: Real implementation ──────────────────────────────────────────────
+from nodes.package_store import package_store
 
