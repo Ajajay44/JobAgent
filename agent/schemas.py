@@ -216,3 +216,61 @@ class CompanyIntelligence(BaseModel):
     )
 
 
+# ── Rewritten Resume Schema ───────────────────────────────────────────────────
+
+class RewrittenExperienceEntry(BaseModel):
+    """
+    One work experience entry with AI-rewritten bullet points.
+
+    UNCHANGED: company, role, start_date, end_date, is_current
+    REWRITTEN: bullets (combination of responsibilities + achievements,
+               reordered and rephrased for ATS and JD alignment)
+    """
+    company: str = ""
+    role: str = ""
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    is_current: bool = False
+    bullets: List[str] = Field(
+        default_factory=list,
+        description="Reordered and JD-aligned bullet points (max 5 per role)"
+    )
+
+
+class RewrittenResume(BaseModel):
+    """
+    ATS-optimised, JD-tailored resume content.
+    Populated by: resume_rewriter node (Phase 6).
+
+    Factual data (contact info, dates, company names, titles, education)
+    is NEVER modified — only text content is rewritten.
+
+    Used by:
+    - package_store (Phase 9) → merged with original factual data to produce PDF
+    - quality_checker (Phase 8) → scores the rewrite quality
+    """
+    professional_summary: str = Field(
+        default="",
+        description="Tailored 3-4 sentence professional summary for this specific role"
+    )
+    work_experience: List[RewrittenExperienceEntry] = Field(
+        default_factory=list,
+        description="Experience entries with rewritten bullets only"
+    )
+    skills: List[str] = Field(
+        default_factory=list,
+        description="Reordered skills list — JD-relevant skills first"
+    )
+
+    # Metadata for quality checking and user transparency
+    ats_score_estimate: int = Field(
+        default=0,
+        description="Estimated ATS keyword match score after rewrite (0-100)"
+    )
+    changes_made: List[str] = Field(
+        default_factory=list,
+        description="Plain English log of what was changed (shown to user)"
+    )
+
+
+

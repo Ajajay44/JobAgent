@@ -21,6 +21,9 @@ from nodes.skill_gap import skill_gap_analysis
 # ── Phase 5: Real implementation ──────────────────────────────────────────────
 from nodes.company_research import company_research
 
+# ── Phase 6: Real implementation ──────────────────────────────────────────────
+from nodes.resume_rewriter import resume_rewriter
+
 logger = logging.getLogger(__name__)
 
 
@@ -29,15 +32,6 @@ def _stub(state: AgentState, node: str) -> None:
 
 
 
-# ── Phase 6 stub ──────────────────────────────────────────────────────────────
-def resume_rewriter(state: AgentState) -> dict:
-    """Phase 6: Tailor resume to job. NEVER fabricate facts."""
-    _stub(state, "resume_rewriter")
-    return {
-        "current_step": "resume_rewriter",
-        "steps_completed": ["resume_rewriter"],
-        "resume_rewritten": None,
-    }
 
 
 # ── Phase 7 stubs ─────────────────────────────────────────────────────────────
